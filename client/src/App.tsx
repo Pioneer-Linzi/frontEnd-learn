@@ -3,7 +3,7 @@ import './App.scss';
 import Nav from './components/Nav';
 import WebWorker from './pages/webWorker/WebWorker';
 import WebSocket from './pages/webSocket/WebSocket';
-import {BrowserRouter as Router,Route} from "react-router-dom";
+import {HashRouter as Router,Route} from "react-router-dom";
 
 const App = () => (
     <Router>
