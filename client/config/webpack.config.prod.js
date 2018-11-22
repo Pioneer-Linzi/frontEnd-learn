@@ -158,13 +158,6 @@ module.exports = {
             test: /\.(ts|tsx)$/,
             include: paths.appSrc,
             use: [
-                {
-                    loader: require.resolve('bundle-loader'),
-                    options:{
-                        lazy:true,
-                        name:'[name]'
-                    }
-                },
               {
                 loader: require.resolve('ts-loader'),
                 options: {
@@ -173,7 +166,6 @@ module.exports = {
                   configFile: paths.appTsProdConfig,
                 },
               },
-
             ],
           },
           // The notation here is somewhat confusing.
