@@ -39,17 +39,15 @@ class WebSql extends React.PureComponent {
                     create websql
                 </Button>
             </div>
-
-
             <Paper >
                 <Table >
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell numeric={true}>Calories</TableCell>
-                            <TableCell numeric={true}>Fat (g)</TableCell>
-                            <TableCell numeric={true}>Carbs (g)</TableCell>
-                            <TableCell numeric={true}>Protein (g)</TableCell>
+                            <TableCell>table</TableCell>
+                            <TableCell numeric={true}>id</TableCell>
+                            <TableCell numeric={true}>log</TableCell>
+                            <TableCell numeric={true}>number</TableCell>
+                            <TableCell numeric={true}>string</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
