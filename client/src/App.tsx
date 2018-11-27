@@ -21,13 +21,14 @@ const WebSocket = Loadable({
     loading: Loading,
 });
 
-
+const WebSql = Loadable({
+    loader: () => import('./pages/webSql/WebSql'),
+    loading: Loading,
+});
 
 
 
 class App extends React.Component {
-
-
     public render(){
         // @ts-ignore
         return (
@@ -38,6 +39,7 @@ class App extends React.Component {
                     <Route exact={true} path="/" component={WebWorker}/>
                     <Route path="/webWorker" component={WebWorker}/>
                     <Route path="/webSocket" component={WebSocket}/>
+                    <Route path="/WebSql" component={WebSql}/>
                 </div>
             </div>
         </Router>)
