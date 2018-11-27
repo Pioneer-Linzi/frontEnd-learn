@@ -1,5 +1,8 @@
 import { connect } from 'react-redux'
 
+
+
+
 function mapStateToProps (state:any){
     return {
         buffer: 20,

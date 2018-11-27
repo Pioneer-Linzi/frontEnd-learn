@@ -10,6 +10,10 @@ import rootReducer from './reducers';
 
 const store = createStore(rootReducer)
 
+// @ts-ignore
+document.onreadystatechance = ()=>{
+    alert();
+}
 ReactDOM.render(
     <Provider store={store}>
         <App />

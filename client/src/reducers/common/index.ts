@@ -1,9 +1,7 @@
 const common = (state = [], action:any) => {
     switch (action.type) {
-        case 'ADD_TODO':
+        case 'changeProcess':
             return []
-        case 'TOGGLE_TODO':
-            return ;
         default:
             return state
     }
