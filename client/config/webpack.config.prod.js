@@ -328,7 +328,7 @@ module.exports = {
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
     new ManifestPlugin({
-      fileName: 'manifest.json',
+      fileName: 'asset-manifest.json',
     }),
       new webpack.optimize.CommonsChunkPlugin({
           name: 'vendor',
