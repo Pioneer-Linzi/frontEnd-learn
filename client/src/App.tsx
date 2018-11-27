@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import {HashRouter as Router,Route} from "react-router-dom";
 // @ts-ignore
 import Loadable from 'react-loadable';
+import connect from './connect';
 import LinearProgress from "@material-ui/core/LinearProgress/LinearProgress";
 
 
@@ -22,14 +23,11 @@ const WebSocket = Loadable({
 });
 
 
+
 class App extends React.Component {
-    public state = {
-        buffer: 10,
-        completed: 0,
-    }
     public render(){
-        const {completed} = this.state;
-        const {buffer} =this.state;
+        // @ts-ignore
+        const  { completed , buffer } = this.props;
         return (
             <Router>
             <div className="App">
@@ -45,4 +43,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(App);
