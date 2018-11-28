@@ -8,6 +8,8 @@ import TableHead from "@material-ui/core/es/TableHead";
 import TableRow from "@material-ui/core/es/TableRow";
 import TableCell from "@material-ui/core/es/TableCell";
 import TableBody from "@material-ui/core/es/TableBody";
+import Snackbar, { SnackbarOrigin } from "@material-ui/core/es/Snackbar/Snackbar";
+
 
 let id = 0;
 function createData(name:string, calories:number, fat:number, carbs:number, protein:number) {
@@ -24,19 +26,94 @@ const rows = [
 ];
 
 class WebSql extends React.PureComponent {
-    public componentDidMount(){
-        // @ts-ignore
-        const webSqlHelper = new WebSqlHelper();
+    public state ={
+        horizontal: 'right',
+        open:false,
+        vertical:'top',
+    }
+    private webSqlHelper : WebSqlHelper;
+    public handleClose = () => {
+        this.setState({
+            open:false
+        });
+    }
+    public showMessage = ()=>{
+        this.setState({
+            open:true
+        })
+        setTimeout(()=>{
+            this.setState({
+                open:false
+            });
+        },1000);
+    }
+    public createDataBases =() => {
+        this.webSqlHelper = new WebSqlHelper();
+        this.webSqlHelper.createDb();
+        this.showMessage();
+    }
+
+    public createTable = ()=>{
+        this.webSqlHelper.createTable();
+        this.showMessage();
+    }
+
+    public insertData = ()=>{
+        this.webSqlHelper.insert();
+        this.showMessage();
+    }
+    public update = ()=>{
+        this.webSqlHelper.update();
+        this.showMessage();
+    }
+    public delete  = ()=>{
+        this.webSqlHelper.delete();
+        this.showMessage();
+    }
+    
+    public query= ()=>{
+        this.webSqlHelper.delete();
+        this.showMessage();
     }
     public render(){
+        const {horizontal,vertical,open} = this.state;
         return (
         <div id='webSql'>
             <div className="operation">
                 <Button
                     variant="contained"
                     color='primary'
+                    onClick={this.createDataBases}
                 >
-                    create websql
+                    create websql databases
+                </Button>
+                <Button
+                    variant="contained"
+                    color='primary'
+                    onClick={this.createDataBases}
+                >
+                    create websql tables
+                </Button>
+                <Button
+                    variant="contained"
+                    color='primary'
+                    onClick={this.insertData}
+                >
+                    insert data
+                </Button>
+                <Button
+                    variant="contained"
+                    color='primary'
+                    onClick={this.update}
+                >
+                    update data
+                </Button>
+                <Button
+                    variant="contained"
+                    color='primary'
+                    onClick={this.query}
+                >
+                    query data
                 </Button>
             </div>
             <Paper >
@@ -67,6 +144,16 @@ class WebSql extends React.PureComponent {
                     </TableBody>
                 </Table>
             </Paper>
+
+            <Snackbar
+                anchorOrigin={{ vertical, horizontal } as SnackbarOrigin}
+                open={open}
+                onClose={this.handleClose}
+                ContentProps={{
+                    'aria-describedby': 'message-id',
+                }}
+                message={<span id="message-id">I love snacks</span>}
+            />
         </div>
         );
     }
