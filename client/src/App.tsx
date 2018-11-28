@@ -27,6 +27,11 @@ const WebSql = Loadable({
 });
 
 
+const CssShadow = Loadable({
+    loader: () => import('./pages/cssShadow/CssShadow'),
+    loading: Loading,
+});
+
 
 class App extends React.Component {
     public render(){
@@ -40,6 +45,7 @@ class App extends React.Component {
                     <Route path="/webWorker" component={WebWorker}/>
                     <Route path="/webSocket" component={WebSocket}/>
                     <Route path="/WebSql" component={WebSql}/>
+                    <Route path="/cssShadow" component={CssShadow} />
                 </div>
             </div>
         </Router>)

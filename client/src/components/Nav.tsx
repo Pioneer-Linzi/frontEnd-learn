@@ -22,7 +22,7 @@ class Nav extends React.Component {
         <div className='nav'>
             <Divider />
             <List>
-                {['webWorker', 'webSocket', 'webSql'].map((text, index) => (
+                {['webWorker', 'webSocket', 'webSql','cssShadow'].map((text, index) => (
                     <Link to={'/'+text} key={text}>
                         <ListItem button={true}  selected={this.state.selected===index} onClick={ this.clickSelect.bind(this,index)}  >
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon />}</ListItemIcon>
