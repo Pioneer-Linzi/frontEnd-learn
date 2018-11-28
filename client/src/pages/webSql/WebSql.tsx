@@ -11,22 +11,22 @@ import TableBody from "@material-ui/core/es/TableBody";
 import Snackbar, { SnackbarOrigin } from "@material-ui/core/es/Snackbar/Snackbar";
 
 
-let id = 0;
-function createData(name:string, calories:number, fat:number, carbs:number, protein:number) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
+
+
+interface IData {
+    goodsId:string;
+    goodsName:string;
+    id:string;
 }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+interface ITable {
+    rows:IData[]
+}
+
 
 class WebSql extends React.PureComponent {
     public state ={
+        data : [] as IData[],
         horizontal: 'right',
         open:false,
         vertical:'top',
@@ -71,12 +71,20 @@ class WebSql extends React.PureComponent {
         this.showMessage();
     }
     
-    public query= ()=>{
-        this.webSqlHelper.delete();
-        this.showMessage();
+    public query= async ()=> {
+       const res = await this.webSqlHelper.query() as ITable;
+       const arr :IData[] =[];
+       for(let i=0;i<res.rows.length;i++){
+           // @ts-ignore
+           arr.push(res.rows.item(i));
+       }
+       this.setState({
+           data:arr
+       })
+       this.showMessage();
     }
     public render(){
-        const {horizontal,vertical,open} = this.state;
+        const {horizontal,vertical,open,data} = this.state;
         return (
         <div id='webSql'>
             <div className="operation">
@@ -120,24 +128,20 @@ class WebSql extends React.PureComponent {
                 <Table >
                     <TableHead>
                         <TableRow>
-                            <TableCell>table</TableCell>
-                            <TableCell numeric={true}>id</TableCell>
-                            <TableCell numeric={true}>log</TableCell>
-                            <TableCell numeric={true}>number</TableCell>
-                            <TableCell numeric={true}>string</TableCell>
+                            <TableCell>Id </TableCell>
+                            <TableCell numeric={true}>goodsId</TableCell>
+                            <TableCell numeric={true}>goodsName</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map(row => {
+                        {data.map(row => {
                             return (
                                 <TableRow key={row.id}>
                                     <TableCell component="th" scope="row">
-                                        {row.name}
+                                        {row.id}
                                     </TableCell>
-                                    <TableCell numeric={true}>{row.calories}</TableCell>
-                                    <TableCell numeric={true}>{row.fat}</TableCell>
-                                    <TableCell numeric={true}>{row.carbs}</TableCell>
-                                    <TableCell numeric={true}>{row.protein}</TableCell>
+                                    <TableCell numeric={true}>{row.goodsId}</TableCell>
+                                    <TableCell numeric={true}>{row.goodsName}</TableCell>
                                 </TableRow>
                             );
                         })}
