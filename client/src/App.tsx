@@ -1,10 +1,11 @@
 import * as React from 'react';
 import './App.scss';
 import Nav from './components/Nav';
-import {HashRouter as Router,Route} from "react-router-dom";
+import {BrowserRouter  as Router,Route} from "react-router-dom";
 // @ts-ignore
 import Loadable from 'react-loadable';
 import connect from './connect';
+import PrivateRoute from "./components/PrivateRoute";
 
 
 const Loading = () => {
@@ -39,7 +40,8 @@ class App extends React.Component {
                     <Route exact={true} path="/" component={WebWorker}/>
                     <Route path="/webWorker" component={WebWorker}/>
                     <Route path="/webSocket" component={WebSocket}/>
-                    <Route path="/WebSql" component={WebSql}/>
+                    {/*<Route path="/WebSql" component={WebSql}/>*/}
+                    <PrivateRoute path="/WebSql" component={WebSql}/>
                 </div>
             </div>
         </Router>)
