@@ -32,6 +32,17 @@ const CssShadow = Loadable({
     loading: Loading,
 });
 
+const CssBase = Loadable({
+    loader: () => import('./pages/cssBase/CssBase'),
+    loading: Loading,
+});
+
+const DataPush= Loadable({
+    loader: () => import('./pages/dataPush/DataPush'),
+    loading: Loading,
+});
+
+
 
 class App extends React.Component {
     public render(){
@@ -46,6 +57,8 @@ class App extends React.Component {
                     <Route path="/webSocket" component={WebSocket}/>
                     <Route path="/WebSql" component={WebSql}/>
                     <Route path="/cssShadow" component={CssShadow} />
+                    <Route path="/cssBase" component={CssBase} />
+                    <Route path="/dataPush" component={DataPush} />
                 </div>
             </div>
         </Router>)

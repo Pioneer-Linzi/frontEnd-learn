@@ -1,0 +1,64 @@
+.cssBase{
+  .box {
+    width: 250px;
+    height: 250px;
+    background-color: #ff11ff;
+    margin:0 auto;
+    transition: all 1s 1s ease-in;
+  }
+
+  .box:hover {
+    width: 200px;
+    height: 200px;
+    border-radius:50%;
+    background-color: rgb(25, 221, 247);
+    transform: rotate(90deg);
+  }
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav {
+    width: 600px;
+    height: 60px;
+    line-height: 60px;
+    margin: 200px auto;
+  }
+
+  li {
+    height: 60px;
+    width: 150px;
+    float: left;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in;
+  }
+
+  span {
+    position: absolute;
+    width: 150px;
+    height: 60px;
+    display: block;
+    color: #fff;
+    text-align: center;
+    perspective:800px;
+  }
+
+  span:first-child{
+    background-color: #ff287a;
+    transform: rotateX(0deg) translateZ(40px) translateY(10px);
+  }
+
+  span:last-child{
+    transform: translateZ(-130px);
+    background-color: #00bdab;
+  }
+
+  li:hover {
+    transform: rotateX(-90deg);
+  }
+}
