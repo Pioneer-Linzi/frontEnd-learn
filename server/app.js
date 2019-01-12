@@ -12,6 +12,14 @@ var dataPush = require('./routes/dataPush');
 
 var app = express();
 
+let server = require('http').createServer(app);
+
+let io = require('socket.io').listen(server)
+
+
+require('./routes/websocket')(io,{
+  path:'/websockets'
+});
 // view engine setup
 app.engine('html',ejs.renderFile)
 app.set('views', path.join(__dirname, 'client/build'));
