@@ -71,6 +71,15 @@
       "pathRewrite": {
         "^/api": "/"
       }
+    },
+    "/wapi": {
+      "target": "ws://localhost:3001",
+      "changeOrigin": true,
+      "ws":true,
+      "logLevel": "info",
+      "pathRewrite": {
+        "^/wapi": "/"
+      }
     }
   },
   "devDependencies": {

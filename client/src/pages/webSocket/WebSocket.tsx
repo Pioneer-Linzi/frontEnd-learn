@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 
 class WebSocket extends React.PureComponent {
     public componentDidMount() {
-        const socket = io('http://localhost:3001/websockets');
+        const socket = io('/');
         socket.on('server',(res:any)=>{
             console.log(res)
         });

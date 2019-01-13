@@ -17,19 +17,17 @@ let server = require('http').createServer(app);
 let io = require('socket.io').listen(server)
 
 
-require('./routes/websocket')(io,{
-  path:'/websockets'
-});
+require('./routes/websocket')(io);
 // view engine setup
 app.engine('html',ejs.renderFile)
-app.set('views', path.join(__dirname, 'client/build'));
+app.set('views', path.join(__dirname, '../client/build/'));
 app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build/')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -44,6 +42,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  console.log(err)
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
