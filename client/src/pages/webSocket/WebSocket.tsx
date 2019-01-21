@@ -5,8 +5,8 @@ import io from 'socket.io-client';
 
 class WebSocket extends React.PureComponent {
     public componentDidMount() {
-        const socket = io('/');
-        socket.on('server',(res:any)=>{
+        const socket = io('/test');
+        socket.on('service',(res:any)=>{
             console.log(res)
         });
     }

@@ -14,7 +14,14 @@ var app = express();
 
 let server = require('http').createServer(app);
 
-let io = require('socket.io').listen(server)
+let io = require('socket.io')(server,{
+  path: '/test',
+  serveClient: false,
+  // below are engine.IO options
+  pingInterval: 10000,
+  pingTimeout: 5000,
+  cookie: false
+})
 
 
 require('./routes/websocket')(io);
